@@ -20,3 +20,9 @@ install the required package "bs"
 ```bash
 apt install bs -y
 ```
+
+## example output
+```
+./status.sh -i 1KXvrkPXwkGF6NK1zyzVuJqbXfpenPVPP6hoiK9bsK3
+your next leader slot is at slot 233200236 (in approximately 0 hours, 25 minutes, 5.2 seconds, and 200.0 milliseconds).
+```
