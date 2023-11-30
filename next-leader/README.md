@@ -15,7 +15,7 @@ to use the script, you need to pass the validator identity as an argument.
 ```
 
 ## packages
-please install the package "bs"
+install the required package "bs"
 
 ```bash
 apt install bs -y
