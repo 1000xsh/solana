@@ -6,8 +6,8 @@ this script checks the upcoming leader slots for a specified solana validator an
 ## usage
 
 ```bash
-chmod + status.sh```
-
+chmod + status.sh
+```
 to use the script, you need to pass the validator identity as an argument.
 
 ```bash
