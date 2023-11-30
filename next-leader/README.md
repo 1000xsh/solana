@@ -15,10 +15,10 @@ to use the script, you need to pass the validator identity as an argument.
 ```
 
 ## packages
-install the required package "bs"
+install the required package "bc"
 
 ```bash
-apt install bs -y
+apt install bc -y
 ```
 
 ## example output
