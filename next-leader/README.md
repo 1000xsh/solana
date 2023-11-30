@@ -7,4 +7,7 @@ this script checks the upcoming leader slots for a specified solana validator an
 to use the script, you need to pass the validator identity as an argument.
 
 ```bash
-./check.sh -i <validator_identity>
+chmod + status.sh
+
+```bash
+./status.sh -i <validator_identity>
