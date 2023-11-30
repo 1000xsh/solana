@@ -13,3 +13,10 @@ to use the script, you need to pass the validator identity as an argument.
 ```bash
 ./status.sh -i <validator_identity>
 ```
+
+## packages
+please install the package "bs"
+
+```bash
+apt install bs -y
+```
