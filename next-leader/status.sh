@@ -29,8 +29,11 @@ if [ -z "$VALIDATOR_IDENTITY" ]; then
     exit 1
 fi
 
-# solana slot duration in seconds (default is 0.4 seconds; verify this for accuracy)
-SLOT_DURATION=0.4
+# fetch performance samples to calculate slot duration
+performance_samples=$(curl -s http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":1,"method":"getRecentPerformanceSamples","params":[1]}')
+num_slots=$(echo "$performance_samples" | jq -r '.result[0].numSlots')
+sample_period_secs=$(echo "$performance_samples" | jq -r '.result[0].samplePeriodSecs')
+SLOT_DURATION=$(echo "scale=4; $sample_period_secs / $num_slots" | bc -l)
 
 # get the current slot
 current_slot=$(solana slot)
@@ -52,6 +55,7 @@ if [ -n "$closest_slot" ]; then
     milliseconds=$(echo "($time_until_next_slot*1000)%1000" | bc)
 
     echo "your next leader slot is at slot $closest_slot (in approximately $hours hours, $minutes minutes, $seconds seconds, and $milliseconds milliseconds)."
+    echo "avg. slot duration: $SLOT_DURATION"
 else
     echo "no upcoming leader slots found in the schedule."
 fi
