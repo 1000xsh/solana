@@ -19,10 +19,10 @@ to use the script, you need to pass the validator identity as an argument.
 ```
 
 ## packages
-install the required package "bc"
+install the required packages: bc and jq
 
 ```bash
-apt install bc -y
+apt install bc jq -y
 ```
 
 ## example output
