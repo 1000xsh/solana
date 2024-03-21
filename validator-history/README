@@ -1,1 +1,4 @@
-
+# vote key
+change VOTE_ACCOUNT_ADDRESS
+# run
+npx ts-node index.ts
