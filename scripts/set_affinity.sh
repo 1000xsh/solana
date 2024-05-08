@@ -1,6 +1,8 @@
 #!/bin/bash
 # wait until the ledger is loaded, bc there will be no thread id until then.
 # check logs with: journalctl -xe
+
+
 # wait to load the binary
 # sleep 20
 
