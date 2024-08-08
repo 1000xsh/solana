@@ -1,0 +1,153 @@
+name = "fd1"
+
+user = ""
+
+scratch_directory = "/home/{user}/.firedancer/{name}"
+
+dynamic_port_range = "8900-9000"
+
+[log]
+    path = ""
+    colorize = "auto"
+    level_logfile = "INFO"
+    level_stderr = "NOTICE"
+    level_flush = "WARNING"
+
+[reporting]
+    solana_metrics_config = ""
+
+[ledger]
+    path = ""
+    accounts_path = ""
+    limit_size = 200_000_000
+    account_indexes = []
+    account_index_exclude_keys = []
+    snapshot_archive_format = "zstd"
+    require_tower = false
+
+[gossip]
+    entrypoints = []
+    port_check = true
+    port = 8001
+    host = ""
+
+[rpc]
+    port = 0
+    full_api = false
+    private = false
+    transaction_history = false
+    extended_tx_metadata_storage = false
+    only_known = false
+    pubsub_enable_block_subscription = false
+    pubsub_enable_vote_subscription = false
+    bigtable_ledger_storage = false
+
+[snapshots]
+    incremental_snapshots = true
+    full_snapshot_interval_slots = 25000
+    incremental_snapshot_interval_slots = 100
+    path = ""
+
+[consensus]
+    identity_path = ""
+    vote_account_path = ""
+    authorized_voter_paths = []
+    snapshot_fetch = true
+    genesis_fetch = true
+    poh_speed_test = true
+    expected_genesis_hash = ""
+    wait_for_supermajority_at_slot = 0
+    expected_bank_hash = ""
+    expected_shred_version = 0
+    wait_for_vote_to_start_leader = true
+    os_network_limits_test = true
+    hard_fork_at_slots = []
+    known_validators = []
+
+[layout]
+    affinity = "1-16"
+    agave_affinity = ""
+    solana_labs_affinity = "17-31"
+    net_tile_count = 1
+    quic_tile_count = 1
+    verify_tile_count = 4
+    bank_tile_count = 2
+    shred_tile_count = 2
+
+[hugetlbfs]
+    mount_path = "/mnt/.fd"
+
+[tiles]
+    [tiles.net]
+        interface = ""
+        xdp_mode = "skb"
+        xdp_rx_queue_size = 4096
+        xdp_tx_queue_size = 4096
+        xdp_aio_depth = 256
+        send_buffer_size = 16384
+
+    [tiles.quic]
+        regular_transaction_listen_port = 9001
+        quic_transaction_listen_port = 9007
+        max_concurrent_connections = 2048
+        max_concurrent_streams_per_connection = 2048
+        stream_pool_cnt = 4096
+        txn_reassembly_count = 16384
+        max_concurrent_handshakes = 2048
+        max_inflight_quic_packets = 1000
+        idle_timeout_millis = 10000
+        retry = true
+
+    [tiles.verify]
+        receive_buffer_size = 16384
+
+    [tiles.dedup]
+        signature_cache_size = 4194302
+
+    [tiles.pack]
+        max_pending_transactions = 4096
+
+    [tiles.bank]
+
+    [tiles.shred]
+        max_pending_shred_sets = 512
+        shred_listen_port = 8003
+
+    [tiles.metric]
+        prometheus_listen_port = 7999
+
+[development]
+    sandbox = true
+    no_clone = false
+    no_agave = false
+    bootstrap = false
+    topology = "frankendancer"
+
+    [development.netns]
+        enabled = false
+        interface0 = "veth_test_xdp_0"
+        interface0_mac = "52:F1:7E:DA:2C:E0"
+        interface0_addr = "198.18.0.1"
+        interface1 = "veth_test_xdp_1"
+        interface1_mac = "52:F1:7E:DA:2C:E1"
+        interface1_addr = "198.18.0.2"
+
+    [development.gossip]
+        allow_private_address = false
+
+    [development.genesis]
+        hashes_per_tick = 62_500
+        target_tick_duration_micros = 6250
+        ticks_per_slot = 64
+        fund_initial_accounts = 1024
+        fund_initial_amount_lamports = 50000000000000
+        vote_account_stake_lamports = 500000000
+        warmup_epochs = false
+
+    [development.bench]
+        benchg_tile_count = 4
+        benchs_tile_count = 2
+        affinity = "f7"
+        larger_max_cost_per_block = false
+        larger_shred_limits_per_block = false
+        disable_blockstore = false
