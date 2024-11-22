@@ -6,10 +6,10 @@
 # wait to load the binary
 # sleep 20
 
-# main pid of solana-validator
-solana_pid=$(pgrep -f "^solana-validator --identity")
+# main pid of agave-validator
+solana_pid=$(pgrep -f "^agave-validator --identity")
 if [ -z "$solana_pid" ]; then
-    logger "set_affinity: solana_validator_404"
+    logger "set_affinity: agave_validator_404"
     exit 1
 fi
 
